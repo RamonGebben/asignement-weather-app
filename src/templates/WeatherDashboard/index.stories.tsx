@@ -33,6 +33,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Loaded: Story = {};
 
+/** Twenty minutes before sunset: the warm glow rises from the horizon. */
+export const Sunset: Story = {
+  args: { fetchedAt: new Date('2026-10-02T16:57:00.000Z') },
+};
+
 /** After sunset the sky turns to its night gradient. */
 export const Night: Story = {
   args: { fetchedAt: new Date('2026-10-02T21:00:00.000Z') },

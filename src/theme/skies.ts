@@ -42,6 +42,51 @@ export const skies: Record<WeatherCondition, { day: string; night: string }> = {
   },
 };
 
-/** The background for a condition at this time of day. */
-export const toSky = (condition: WeatherCondition, isDaytime: boolean) =>
-  isDaytime ? skies[condition].day : skies[condition].night;
+/**
+ * How much of the sunrise or sunset glow shows through each condition, 0-1.
+ * Clear air shows it fully; cloud, rain and fog hide most of it. Tuned by
+ * eye.
+ */
+export const glowThroughWeather: Record<WeatherCondition, number> = {
+  clear: 1,
+  'partly-cloudy': 0.8,
+  cloudy: 0.4,
+  rain: 0.3,
+  'heavy-rain': 0.2,
+  storm: 0.2,
+  snow: 0.4,
+  fog: 0.3,
+};
+
+/** The glow's colour: peach at sunrise, orange at sunset. */
+const glowColours = {
+  sunrise: '255 170 140',
+  sunset: '255 128 64',
+} as const;
+
+/** The glow at full strength, so the sky underneath still shows through. */
+const maximumGlow = 0.65;
+
+export interface SkyMoment {
+  condition: WeatherCondition;
+  isDaytime: boolean;
+  /** 0-1 and which end of the day, e.g. from `getGoldenHour`. */
+  goldenHour: { strength: number; phase: 'sunrise' | 'sunset' };
+}
+
+/**
+ * The background for a condition at this time of day. Around sunrise and
+ * sunset, a warm glow rises from the horizon over the condition's gradient,
+ * as strong as the weather lets through. It's a naive tint, not a model of
+ * the sky.
+ */
+export const toSky = ({ condition, isDaytime, goldenHour }: SkyMoment) => {
+  const base = isDaytime ? skies[condition].day : skies[condition].night;
+  const opacity =
+    goldenHour.strength * glowThroughWeather[condition] * maximumGlow;
+  if (opacity === 0) return base;
+
+  const colour = glowColours[goldenHour.phase];
+  const glow = `linear-gradient(to top, rgb(${colour} / ${opacity.toFixed(2)}), rgb(${colour} / 0) 70%)`;
+  return `${glow}, ${base}`;
+};

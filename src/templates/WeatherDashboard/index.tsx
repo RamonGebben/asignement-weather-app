@@ -11,6 +11,7 @@ import { WindCard } from '~/organisms/WindCard';
 import { toSky } from '~/theme/skies';
 import { formatLocationName } from '~/utils/formatLocationName';
 import type { Location, WeatherReport } from '~/weather/model';
+import { getGoldenHour } from '~/weather/sun/getGoldenHour';
 import { getSunArcPosition } from '~/weather/sun/getSunArcPosition';
 import { Area } from './components/Area';
 import { Layout } from './components/Layout';
@@ -76,7 +77,11 @@ export const WeatherDashboard = ({
   return (
     <Shell
       search={search}
-      sky={toSky(report.current.condition, isDaytime)}
+      sky={toSky({
+        condition: report.current.condition,
+        isDaytime,
+        goldenHour: getGoldenHour(fetchedAt, report.current.sun),
+      })}
       observed={{
         at: report.current.observedAt,
         timezoneOffset: report.timezoneOffset,
