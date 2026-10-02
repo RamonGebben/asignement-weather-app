@@ -13,7 +13,11 @@ export const createTrpcHandler =
       router: appRouter,
       createContext,
       onError: ({ error, path }) => {
-        if (error.code === 'INTERNAL_SERVER_ERROR') {
+        // BAD_GATEWAY is a provider outage or payload drift - worth seeing too.
+        if (
+          error.code === 'INTERNAL_SERVER_ERROR' ||
+          error.code === 'BAD_GATEWAY'
+        ) {
           console.error(
             `tRPC ${path ?? '<no path>'} failed:`,
             error.cause ?? error,
