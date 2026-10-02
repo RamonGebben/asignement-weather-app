@@ -14,7 +14,8 @@ export interface ResponsePanelProps {
   input?: unknown;
   data?: unknown;
   isLoading: boolean;
-  error?: Error | null;
+  /** Only the message is shown, so any error-like value will do. */
+  error?: { message: string } | null;
 }
 
 /** Shows one response raw, as formatted JSON, with its request and status. */

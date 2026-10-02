@@ -18,6 +18,11 @@ export const CodeBlock = styled.pre.attrs({ tabIndex: 0 })`
   background: ${({ theme }) => theme.color('formBackground')};
   border-radius: ${({ theme }) => theme.getTokens().border?.radius.base};
 
+  /* The UA stylesheet gives a nested <code> its own monospace font. */
+  & > code {
+    font: inherit;
+  }
+
   &:focus-visible {
     outline: ${({ theme }) => theme.getTokens().border?.width.base} solid
       ${({ theme }) => theme.color('tertiary')};

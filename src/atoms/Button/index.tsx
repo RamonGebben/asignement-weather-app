@@ -4,7 +4,10 @@ import styled, { css } from 'styled-components';
 
 type ButtonVariant = 'primary' | 'secondary';
 
-export const Button = styled.a<{ $variant: ButtonVariant }>`
+/** A real `<button>`; `type` defaults to `button`, so it never submits by accident. */
+export const Button = styled.button.attrs(({ type = 'button' }) => ({ type }))<{
+  $variant: ButtonVariant;
+}>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,8 +19,22 @@ export const Button = styled.a<{ $variant: ButtonVariant }>`
   border: ${({ theme }) => theme.getTokens().border?.width.s} solid transparent;
   font-size: ${({ theme }) => theme.fontSize('xs')};
   font-weight: ${({ theme }) => theme.fontWeight('medium')};
+  font-family: inherit;
+  color: inherit;
+  background: transparent;
   transition: 0.2s;
   cursor: pointer;
+
+  &:focus-visible {
+    outline: ${({ theme }) => theme.getTokens().border?.width.base} solid
+      ${({ theme }) => theme.color('tertiary')};
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 
   ${({ $variant, theme }) =>
     $variant === 'primary'

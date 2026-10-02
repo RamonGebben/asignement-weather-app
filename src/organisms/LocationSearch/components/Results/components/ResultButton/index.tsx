@@ -1,0 +1,30 @@
+'use client';
+
+import styled from 'styled-components';
+
+export const ResultButton = styled.button.attrs({ type: 'button' })`
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing('xs')}
+    ${({ theme }) => theme.spacing('s')};
+  font: inherit;
+  font-size: ${({ theme }) => theme.fontSize('s')};
+  text-align: left;
+  color: inherit;
+  background: transparent;
+  border: ${({ theme }) => theme.getTokens().border?.width.s} solid
+    ${({ theme }) => theme.color('secondary')};
+  border-radius: ${({ theme }) => theme.getTokens().border?.radius.base};
+  cursor: pointer;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: ${({ theme }) => theme.color('secondary')};
+    }
+  }
+
+  &:focus-visible {
+    outline: ${({ theme }) => theme.getTokens().border?.width.base} solid
+      ${({ theme }) => theme.color('tertiary')};
+    outline-offset: 2px;
+  }
+`;
