@@ -6,9 +6,9 @@ import type { Coordinates } from '~/weather/model';
 export type PositionStatus =
   'idle' | 'locating' | 'located' | 'denied' | 'unavailable' | 'unsupported';
 
-const getCurrentPosition = () =>
+const getCurrentPosition = (geolocation: Geolocation) =>
   new Promise<GeolocationPosition>((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(resolve, reject, {
+    geolocation.getCurrentPosition(resolve, reject, {
       // City-level precision is plenty for weather, and faster.
       enableHighAccuracy: false,
       timeout: 10_000,
@@ -22,8 +22,27 @@ const permissionDenied = 1;
 /** A geolocation failure as a status the UI can explain. */
 export const toPositionStatus = (
   error: Pick<GeolocationPositionError, 'code'>,
-): PositionStatus =>
+): Extract<PositionStatus, 'denied' | 'unavailable'> =>
   error.code === permissionDenied ? 'denied' : 'unavailable';
+
+export type LocateResult =
+  | { status: 'located'; coordinates: Coordinates }
+  | { status: ReturnType<typeof toPositionStatus> };
+
+/** One position lookup, settled into a status - it never rejects. */
+export const locatePosition = async (
+  geolocation: Geolocation,
+): Promise<LocateResult> => {
+  try {
+    const { coords } = await getCurrentPosition(geolocation);
+    return {
+      status: 'located',
+      coordinates: { lat: coords.latitude, lon: coords.longitude },
+    };
+  } catch (error) {
+    return { status: toPositionStatus(error as GeolocationPositionError) };
+  }
+};
 
 /**
  * The browser's position, asked for on demand. `locate` resolves with the
@@ -41,16 +60,13 @@ export const useBrowserPosition = () => {
 
     setStatus('locating');
 
-    try {
-      const { coords } = await getCurrentPosition();
-      const located = { lat: coords.latitude, lon: coords.longitude };
-      setCoordinates(located);
-      setStatus('located');
-      return located;
-    } catch (error) {
-      setStatus(toPositionStatus(error as GeolocationPositionError));
-      return undefined;
-    }
+    const result = await locatePosition(navigator.geolocation);
+    setStatus(result.status);
+
+    if (result.status !== 'located') return undefined;
+
+    setCoordinates(result.coordinates);
+    return result.coordinates;
   }, []);
 
   return { status, coordinates, locate };
