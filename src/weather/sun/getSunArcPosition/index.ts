@@ -10,6 +10,9 @@ export interface SunArcPosition {
 /**
  * Where the sun sits on its daily arc. Polar day/night (sunrise equal to
  * sunset, as the provider reports it) has no arc, so it reports night.
+ *
+ * @see https://en.wikipedia.org/wiki/Polar_night
+ * @see https://en.wikipedia.org/wiki/Midnight_sun
  */
 export const getSunArcPosition = (
   now: Date,

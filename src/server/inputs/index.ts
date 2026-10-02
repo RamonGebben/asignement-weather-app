@@ -1,6 +1,11 @@
 import { z } from 'zod';
 
-/** Two decimals is roughly 1 km - plenty for weather, kinder to caches and privacy. */
+/**
+ * Two decimals is roughly 1 km - plenty for weather, kinder to caches and
+ * privacy. A degree of latitude is about 111 km, so 0.01° is about 1.1 km.
+ *
+ * @see https://en.wikipedia.org/wiki/Decimal_degrees#Precision
+ */
 const roundCoordinate = (value: number) => Math.round(value * 100) / 100;
 
 export const coordinatesInput = z

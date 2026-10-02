@@ -17,9 +17,24 @@ export type OpenWeatherMapErrorKind =
   | 'invalid-response';
 
 export interface OpenWeatherMapClient {
-  /** Current conditions plus the daily forecast - two upstream calls. */
+  /**
+   * Current conditions plus the daily forecast - two upstream calls.
+   *
+   * @see https://openweathermap.org/current
+   * @see https://openweathermap.org/forecast5 (5 days in 3-hour slots)
+   */
   weather: (coordinates: Coordinates) => Promise<WeatherReport>;
+  /**
+   * Place name to coordinates.
+   *
+   * @see https://openweathermap.org/api/geocoding-api
+   */
   geocode: (query: string, limit: number) => Promise<Array<Location>>;
+  /**
+   * Coordinates to the nearest place name.
+   *
+   * @see https://openweathermap.org/api/geocoding-api
+   */
   reverseGeocode: (coordinates: Coordinates) => Promise<Location | null>;
 }
 

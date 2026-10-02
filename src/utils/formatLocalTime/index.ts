@@ -2,6 +2,8 @@
  * The provider gives a UTC offset, not a timezone name, so local times are
  * made by shifting the instant by the offset and formatting it as UTC.
  * The locale is fixed so output is the same on server and client.
+ *
+ * @see https://en.wikipedia.org/wiki/UTC_offset
  */
 
 const locale = 'en-GB';

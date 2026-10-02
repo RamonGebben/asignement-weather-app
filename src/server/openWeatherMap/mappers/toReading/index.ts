@@ -18,7 +18,11 @@ export interface Reading {
   min: number;
   /** °C */
   max: number;
-  /** 0-1 */
+  /**
+   * Probability of precipitation, 0-1.
+   *
+   * @see https://en.wikipedia.org/wiki/Probability_of_precipitation
+   */
   pop: number;
   wind: Wind;
 }

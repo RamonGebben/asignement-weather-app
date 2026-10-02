@@ -14,8 +14,10 @@ const severity: Array<WeatherCondition> = [
 ];
 
 /**
- * The condition that best describes a period: the most frequent one, with
- * ties going to the more severe condition.
+ * The condition that best describes a period: the most frequent one (the
+ * statistical mode), with ties going to the more severe condition.
+ *
+ * @see https://en.wikipedia.org/wiki/Mode_(statistics)
  */
 export const getDominantCondition = (
   conditions: Array<WeatherCondition>,
