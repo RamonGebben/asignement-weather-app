@@ -69,7 +69,6 @@ export interface CurrentWeather {
   cloudiness: number;
   /** Metres. */
   visibility: number;
-  uvIndex: number;
   precipitation: Precipitation;
   wind: Wind;
   sun: SunTimes;
@@ -89,20 +88,22 @@ export interface DailyForecast {
   description: string;
   icon: string;
   temperature: TemperatureRange;
-  /** Probability of precipitation, 0-1. */
+  /** Highest probability of precipitation across the day, 0-1. */
   precipitationProbability: number;
+  /** The strongest wind of the day. */
   wind: Wind;
-  sun: SunTimes;
 }
 
 export interface WeatherReport {
   coordinates: Coordinates;
-  /** IANA timezone name, e.g. `Europe/Amsterdam`. */
-  timezone: string;
-  /** Offset from UTC in seconds. */
+  /** The location's offset from UTC in seconds. */
   timezoneOffset: number;
   current: CurrentWeather;
+  /** The rest of today, including the current observation. */
   today: DailyForecast;
-  /** The days after today, at most five. */
+  /**
+   * The days after today, at most five. The last day can be partial: the
+   * provider's forecast ends five days from now, not at local midnight.
+   */
   forecast: Array<DailyForecast>;
 }

@@ -1,0 +1,15 @@
+[
+  {
+    "name": "The Hague",
+    "local_names": {
+      "en": "The Hague",
+      "nl": "Den Haag",
+      "de": "Den Haag",
+      "fr": "La Haye"
+    },
+    "lat": 52.0799838,
+    "lon": 4.3113461,
+    "country": "NL",
+    "state": "South Holland"
+  }
+]

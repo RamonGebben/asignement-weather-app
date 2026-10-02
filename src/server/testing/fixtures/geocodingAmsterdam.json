@@ -1,0 +1,55 @@
+[
+  {
+    "name": "Amsterdam",
+    "local_names": {
+      "en": "Amsterdam",
+      "nl": "Amsterdam",
+      "de": "Amsterdam",
+      "fr": "Amsterdam"
+    },
+    "lat": 52.3727598,
+    "lon": 4.8936041,
+    "country": "NL",
+    "state": "North Holland"
+  },
+  {
+    "name": "New Amsterdam Island",
+    "local_names": {
+      "en": "New Amsterdam Island",
+      "nl": "Nieuw-Amsterdam",
+      "fr": "Île de la Nouvelle-Amsterdam"
+    },
+    "lat": -37.8364908,
+    "lon": 77.5541729591024,
+    "country": "FR",
+    "state": "French Southern and Antarctic Lands"
+  },
+  {
+    "name": "Amsterdam",
+    "local_names": {
+      "en": "Amsterdam",
+      "nl": "Amsterdam"
+    },
+    "lat": 52.37454030000001,
+    "lon": 4.897975505617977,
+    "country": "NL",
+    "state": "North Holland"
+  },
+  {
+    "name": "City of Amsterdam",
+    "local_names": {
+      "en": "City of Amsterdam"
+    },
+    "lat": 42.943367,
+    "lon": -74.1850436,
+    "country": "US",
+    "state": "New York"
+  },
+  {
+    "name": "Amsterdam",
+    "lat": 38.3497423,
+    "lon": -94.5891216,
+    "country": "US",
+    "state": "Missouri"
+  }
+]

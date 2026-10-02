@@ -11,6 +11,8 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  // Resolve the `~/*` alias from tsconfig.json.
+  resolve: { tsconfigPaths: true },
   test: {
     passWithNoTests: true,
     projects: [
