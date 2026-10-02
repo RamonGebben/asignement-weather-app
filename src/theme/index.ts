@@ -67,7 +67,7 @@ const tokens = {
   modes: {
     light: {
       colorPalette: {
-        error: { base: '#e5484d', text: '#ffffff', emphasis: '#b3221f' },
+        error: { base: '#e5484d', text: '#ffffff', emphasis: '#811916' },
         formBackground: {
           base: '#f5f5f5',
           text: '#1a1a1a',
@@ -75,7 +75,7 @@ const tokens = {
         },
         background: { base: '#ffffff', text: '#171717', emphasis: '#fafafa' },
         primary: { base: '#000000', text: '#fafafa', emphasis: '#383838' },
-        secondary: { base: '#ebebeb', text: '#666666', emphasis: '#f2f2f2' },
+        secondary: { base: '#ebebeb', text: '#404040', emphasis: '#f2f2f2' },
         tertiary: { base: '#8b5cf6', text: '#ffffff', emphasis: '#5b21b6' },
         quaternary: { base: '#f59e0b', text: '#1a1a1a', emphasis: '#b45309' },
       },
@@ -91,7 +91,7 @@ const tokens = {
     },
     dark: {
       colorPalette: {
-        error: { base: '#ff6369', text: '#1a1a1a', emphasis: '#ff9592' },
+        error: { base: '#ff6369', text: '#1a1a1a', emphasis: '#ffaeac' },
         formBackground: {
           base: '#1f1f1f',
           text: '#ededed',
@@ -99,7 +99,7 @@ const tokens = {
         },
         background: { base: '#000000', text: '#ededed', emphasis: '#000000' },
         primary: { base: '#ededed', text: '#000000', emphasis: '#cccccc' },
-        secondary: { base: '#1a1a1a', text: '#999999', emphasis: '#1a1a1a' },
+        secondary: { base: '#1a1a1a', text: '#c4c4c4', emphasis: '#1a1a1a' },
         tertiary: { base: '#a78bfa', text: '#111111', emphasis: '#c4b5fd' },
         quaternary: { base: '#fbbf24', text: '#1a1a1a', emphasis: '#fcd34d' },
       },
