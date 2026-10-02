@@ -1,6 +1,6 @@
 'use client';
 
-import type { FormEvent } from 'react';
+import type { SubmitEvent } from 'react';
 import { useId, useRef } from 'react';
 import { Button } from '~/atoms/Button';
 import { Stack } from '~/atoms/Stack';
@@ -39,7 +39,7 @@ export const LocationSearch = ({
   const inputId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit(query.trim());
   };
@@ -71,6 +71,9 @@ export const LocationSearch = ({
             required
             minLength={2}
             maxLength={100}
+            // minLength counts spaces; the server needs two real characters.
+            pattern=".*\S.*\S.*"
+            title="Enter at least two characters"
             placeholder="e.g. Amsterdam"
             value={query}
             onChange={event => onQueryChange(event.target.value)}
