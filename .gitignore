@@ -49,3 +49,6 @@ storybook-static
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# local working notes for resuming sessions
+/WORKLOG.md
