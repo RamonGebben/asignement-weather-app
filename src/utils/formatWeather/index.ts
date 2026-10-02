@@ -3,7 +3,10 @@ export const formatTemperature = (celsius: number) =>
   // `+ 0` turns -0 (from rounding -0.4) into 0.
   `${Math.round(celsius) + 0}°`;
 
-/** m/s as km/h with one decimal, e.g. `3.13` → "11.3 km/h". */
+/** m/s as km/h with one decimal, e.g. `3.13` → "11.3 km/h".
+ * 1 m/s * 3600 seconds in an hour = 3600 m/h
+ * 3600 m/h / 1000 metres in a km = 3.6 km/h
+ */
 export const formatWindSpeed = (metresPerSecond: number) =>
   `${(metresPerSecond * 3.6).toFixed(1)} km/h`;
 

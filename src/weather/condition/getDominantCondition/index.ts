@@ -1,4 +1,4 @@
-import { countBy, identity, toPairs } from 'ramda';
+import { countBy, descend, identity, sortWith, uniq } from 'ramda';
 import type { WeatherCondition } from '~/weather/model';
 
 /** Least to most severe - breaks ties towards the weather worth knowing about. */
@@ -20,18 +20,15 @@ const severity: Array<WeatherCondition> = [
 export const getDominantCondition = (
   conditions: Array<WeatherCondition>,
 ): WeatherCondition | undefined => {
-  const counts = toPairs(countBy(identity, conditions)) as Array<
-    [WeatherCondition, number]
-  >;
+  const counts = countBy(identity, conditions);
+  const frequency = (condition: WeatherCondition) => counts[condition] ?? 0;
+  const severityOf = (condition: WeatherCondition) =>
+    severity.indexOf(condition);
 
-  return counts.reduce<[WeatherCondition, number] | undefined>(
-    (best, entry) =>
-      !best ||
-      entry[1] > best[1] ||
-      (entry[1] === best[1] &&
-        severity.indexOf(entry[0]) > severity.indexOf(best[0]))
-        ? entry
-        : best,
-    undefined,
-  )?.[0];
+  const [dominant] = sortWith(
+    [descend(frequency), descend(severityOf)],
+    uniq(conditions),
+  );
+
+  return dominant;
 };
