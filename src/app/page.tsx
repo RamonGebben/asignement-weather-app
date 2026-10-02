@@ -8,13 +8,13 @@ import { parseLocationSearchParams } from '~/utils/locationSearchParams';
 
 const HomePage = ({ searchParams }: PageProps<'/'>) => {
   const location = parseLocationSearchParams(use(searchParams));
-  const locationSearch = useLocationSearch();
+  const search = useLocationSearch();
   const { query: weather, fetchedAt } = useWeatherReport(location.coordinates);
 
   return (
     <WeatherDashboard
       location={location}
-      search={locationSearch.props}
+      search={search}
       report={weather.data}
       fetchedAt={fetchedAt}
       isLoading={weather.isLoading}

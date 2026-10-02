@@ -14,7 +14,8 @@ export { toPositionLocation } from './toPositionLocation';
 
 /**
  * Everything needed to change location - by searching or by the browser's
- * position. Choosing a place puts it in the current page's URL.
+ * position. Choosing a place puts it in the current page's URL. Returns
+ * the props for `LocationSearch`.
  */
 export const useLocationSearch = () => {
   const router = useRouter();
@@ -25,13 +26,10 @@ export const useLocationSearch = () => {
   const [query, setQuery] = useState('');
   const [submittedQuery, setSubmittedQuery] = useState<string>();
 
-  const searchInput =
-    submittedQuery === undefined ? undefined : { query: submittedQuery };
   const search = useQuery(
-    trpc.location.search.queryOptions(searchInput ?? skipToken),
-  );
-  const reverse = useQuery(
-    trpc.location.reverse.queryOptions(position.coordinates ?? skipToken),
+    trpc.location.search.queryOptions(
+      submittedQuery === undefined ? skipToken : { query: submittedQuery },
+    ),
   );
 
   /**
@@ -57,19 +55,14 @@ export const useLocationSearch = () => {
   };
 
   return {
-    /** Ready to spread into `LocationSearch`. */
-    props: {
-      query,
-      onQueryChange: setQuery,
-      onSubmit: setSubmittedQuery,
-      results: search.data,
-      isSearching: search.isLoading,
-      searchError: search.error,
-      onSelect: selectLocation,
-      positionStatus: position.status,
-      onUseMyLocation: locateMe,
-    },
-    search: { input: searchInput, query: search },
-    reverse: { input: position.coordinates, query: reverse },
+    query,
+    onQueryChange: setQuery,
+    onSubmit: setSubmittedQuery,
+    results: search.data,
+    isSearching: search.isLoading,
+    searchError: search.error,
+    onSelect: selectLocation,
+    positionStatus: position.status,
+    onUseMyLocation: locateMe,
   };
 };
