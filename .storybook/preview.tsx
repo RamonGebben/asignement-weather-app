@@ -1,5 +1,10 @@
 import type { Preview } from '@storybook/nextjs-vite';
 import { ThemeProvider } from '../src/providers/ThemeProvider';
+import { fontVariables } from '../src/theme/fonts';
+
+// Mirror the root layout: the theme's fontFamily tokens read CSS variables
+// defined by these classes, and the global body styles need them on <html>.
+document.documentElement.classList.add(...fontVariables.split(' '));
 
 const preview: Preview = {
   decorators: [

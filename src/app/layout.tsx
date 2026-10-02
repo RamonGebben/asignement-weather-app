@@ -1,19 +1,9 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import { colorModeScript } from '@pindakaasman/design-system';
 import { StyledComponentsRegistry } from '~/providers/StyledComponentsRegistry';
 import { ThemeProvider } from '~/providers/ThemeProvider';
 import { TrpcProvider } from '~/providers/TrpcProvider';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
+import { fontVariables } from '~/theme/fonts';
 
 export const metadata: Metadata = {
   title: 'Weather',
@@ -23,7 +13,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: LayoutProps<'/'>) => {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={fontVariables}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: colorModeScript() }} />
       </head>
