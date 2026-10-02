@@ -33,8 +33,9 @@ export const currentWeatherSchema = z.object({
   visibility: z.number().optional(),
   wind: windSchema,
   clouds: z.object({ all: z.number() }),
-  rain: z.object({ '1h': z.number().nonnegative() }).optional(),
-  snow: z.object({ '1h': z.number().nonnegative() }).optional(),
+  // The block can carry only `3h`, so `1h` itself is optional too.
+  rain: z.object({ '1h': z.number().nonnegative().optional() }).optional(),
+  snow: z.object({ '1h': z.number().nonnegative().optional() }).optional(),
   dt: z.number().int(),
   sys: z.object({ sunrise: z.number().int(), sunset: z.number().int() }),
   /** Offset from UTC in seconds. */
