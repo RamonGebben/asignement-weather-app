@@ -1,6 +1,7 @@
 'use client';
 
 import styled, { css } from 'styled-components';
+import { focusRing } from '~/theme/focusRing';
 
 type ButtonVariant = 'primary' | 'secondary';
 
@@ -25,11 +26,7 @@ export const Button = styled.button.attrs(({ type = 'button' }) => ({ type }))<{
   transition: 0.2s;
   cursor: pointer;
 
-  &:focus-visible {
-    outline: ${({ theme }) => theme.getTokens().border?.width.base} solid
-      ${({ theme }) => theme.color('tertiary')};
-    outline-offset: 2px;
-  }
+  ${focusRing}
 
   &:disabled {
     cursor: not-allowed;

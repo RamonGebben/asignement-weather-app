@@ -1,11 +1,10 @@
 'use client';
 
 import styled from 'styled-components';
+import { Stack } from '../Stack';
 
-export const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing('s')};
+/** A bordered, padded group of content. Layout props come from `Stack`. */
+export const Card = styled(Stack)`
   min-width: 0;
   padding: ${({ theme }) => theme.spacing('base')};
   border: ${({ theme }) => theme.getTokens().border?.width.s} solid

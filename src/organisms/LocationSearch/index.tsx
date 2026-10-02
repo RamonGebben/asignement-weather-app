@@ -3,13 +3,11 @@
 import type { FormEvent } from 'react';
 import { useId } from 'react';
 import { Button } from '~/atoms/Button';
-import { Label } from '~/atoms/Label';
+import { Stack } from '~/atoms/Stack';
 import { TextInput } from '~/atoms/TextInput';
+import { Label } from '~/atoms/Typography';
 import type { PositionStatus } from '~/hooks/useBrowserPosition';
 import type { Location } from '~/weather/model';
-import { Controls } from './components/Controls';
-import { Field } from './components/Field';
-import { Form } from './components/Form';
 import { PositionMessage } from './components/PositionMessage';
 import { Results } from './components/Results';
 
@@ -46,10 +44,16 @@ export const LocationSearch = ({
   };
 
   return (
-    <Form role="search" aria-label="Location" onSubmit={handleSubmit}>
-      <Field>
+    <Stack
+      as="form"
+      $gap="s"
+      role="search"
+      aria-label="Location"
+      onSubmit={handleSubmit}
+    >
+      <Stack $gap="xs">
         <Label htmlFor={inputId}>Search for a place</Label>
-        <Controls>
+        <Stack $direction="row" $wrap $gap="xs">
           <TextInput
             id={inputId}
             type="search"
@@ -72,8 +76,8 @@ export const LocationSearch = ({
           >
             Use my location
           </Button>
-        </Controls>
-      </Field>
+        </Stack>
+      </Stack>
       <PositionMessage status={positionStatus} />
       <Results
         results={results}
@@ -81,6 +85,6 @@ export const LocationSearch = ({
         error={searchError}
         onSelect={onSelect}
       />
-    </Form>
+    </Stack>
   );
 };

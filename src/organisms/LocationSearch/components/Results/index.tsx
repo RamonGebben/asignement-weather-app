@@ -1,9 +1,9 @@
 'use client';
 
+import { Stack } from '~/atoms/Stack';
+import { Caption } from '~/atoms/Typography';
 import { formatLocationName } from '~/utils/formatLocationName';
 import type { Location } from '~/weather/model';
-import { Message } from '../Message';
-import { List } from './components/List';
 import { ResultButton } from './components/ResultButton';
 
 export interface ResultsProps {
@@ -19,27 +19,38 @@ export const Results = ({
   error,
   onSelect,
 }: ResultsProps) => {
-  if (isSearching) return <Message role="status">Searching…</Message>;
+  if (isSearching) {
+    return (
+      <Caption $tone="muted" role="status">
+        Searching…
+      </Caption>
+    );
+  }
   if (error) {
     return (
-      <Message role="alert" $tone="error">
+      <Caption $tone="error" role="alert">
         Search failed: {error.message}
-      </Message>
+      </Caption>
     );
   }
   if (results === undefined) return null;
   if (results.length === 0) {
-    return <Message role="status">No places found.</Message>;
+    return (
+      <Caption $tone="muted" role="status">
+        No places found.
+      </Caption>
+    );
   }
 
   return (
     <>
-      <Message role="status">
+      <Caption $tone="muted" role="status">
         {results.length === 1
           ? '1 place found.'
           : `${results.length} places found.`}
-      </Message>
-      <List aria-label="Search results">
+      </Caption>
+      {/* role="list" keeps list semantics in Safari once bullets are gone. */}
+      <Stack as="ul" role="list" $gap="xxs" aria-label="Search results">
         {results.map(location => (
           <li key={`${location.coordinates.lat},${location.coordinates.lon}`}>
             <ResultButton onClick={() => onSelect(location)}>
@@ -47,7 +58,7 @@ export const Results = ({
             </ResultButton>
           </li>
         ))}
-      </List>
+      </Stack>
     </>
   );
 };

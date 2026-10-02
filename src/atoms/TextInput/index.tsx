@@ -1,8 +1,11 @@
 'use client';
 
 import styled from 'styled-components';
+import { focusRing } from '~/theme/focusRing';
 
 export const TextInput = styled.input`
+  /* In a row, grow to fill it, wrapping below 16rem. */
+  flex: 1 1 16rem;
   height: 40px;
   min-width: 0;
   padding: 0 ${({ theme }) => theme.spacing('s')};
@@ -14,9 +17,5 @@ export const TextInput = styled.input`
     ${({ theme }) => theme.color('secondary', 'text')};
   border-radius: ${({ theme }) => theme.getTokens().border?.radius.base};
 
-  &:focus-visible {
-    outline: ${({ theme }) => theme.getTokens().border?.width.base} solid
-      ${({ theme }) => theme.color('tertiary')};
-    outline-offset: 2px;
-  }
+  ${focusRing}
 `;

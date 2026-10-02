@@ -1,7 +1,7 @@
 'use client';
 
+import { Caption } from '~/atoms/Typography';
 import type { PositionStatus } from '~/hooks/useBrowserPosition';
-import { Message } from '../Message';
 
 const messages = {
   idle: '',
@@ -17,7 +17,7 @@ const isProblem = (status: PositionStatus) =>
 
 /** Always rendered, so screen readers announce changes to it. */
 export const PositionMessage = ({ status }: { status: PositionStatus }) => (
-  <Message role="status" $tone={isProblem(status) ? 'error' : 'neutral'}>
+  <Caption $tone={isProblem(status) ? 'error' : 'muted'} role="status">
     {messages[status]}
-  </Message>
+  </Caption>
 );

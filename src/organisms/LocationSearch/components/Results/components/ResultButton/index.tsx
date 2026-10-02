@@ -1,6 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
+import { focusRing } from '~/theme/focusRing';
 
 export const ResultButton = styled.button.attrs({ type: 'button' })`
   width: 100%;
@@ -22,9 +23,5 @@ export const ResultButton = styled.button.attrs({ type: 'button' })`
     }
   }
 
-  &:focus-visible {
-    outline: ${({ theme }) => theme.getTokens().border?.width.base} solid
-      ${({ theme }) => theme.color('tertiary')};
-    outline-offset: 2px;
-  }
+  ${focusRing}
 `;

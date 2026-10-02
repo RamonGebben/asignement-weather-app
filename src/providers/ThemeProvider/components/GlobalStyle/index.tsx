@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     color: ${({ theme }) => theme.color('background', 'text')};
     background: ${({ theme }) => theme.color('background')};
-    font-family: ${({ theme }) => theme.getTokens().type.fontFamily.base};
+    font-family: ${({ theme }) => theme.getTokens().type.fontFamily.sans};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

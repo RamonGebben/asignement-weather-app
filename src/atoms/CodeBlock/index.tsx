@@ -1,6 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
+import { focusRing } from '~/theme/focusRing';
 
 /**
  * A scrollable block of preformatted code. Focusable, so keyboard users can
@@ -23,9 +24,5 @@ export const CodeBlock = styled.pre.attrs({ tabIndex: 0 })`
     font: inherit;
   }
 
-  &:focus-visible {
-    outline: ${({ theme }) => theme.getTokens().border?.width.base} solid
-      ${({ theme }) => theme.color('tertiary')};
-    outline-offset: 2px;
-  }
+  ${focusRing}
 `;

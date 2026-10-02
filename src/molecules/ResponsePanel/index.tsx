@@ -1,10 +1,10 @@
 'use client';
 
 import { useId } from 'react';
+import { Card } from '~/atoms/Card';
 import { CodeBlock } from '~/atoms/CodeBlock';
+import { Caption } from '~/atoms/Typography';
 import { Header } from './components/Header';
-import { Section } from './components/Section';
-import { Status } from './components/Status';
 
 export interface ResponsePanelProps {
   title: string;
@@ -32,40 +32,46 @@ export const ResponsePanel = ({
 
   if (isLoading) {
     return (
-      <Section aria-labelledby={headingId} aria-busy="true">
+      <Card as="section" $gap="s" aria-labelledby={headingId} aria-busy="true">
         <Header {...header} />
-        <Status role="status">Loading…</Status>
-      </Section>
+        <Caption $tone="muted" role="status">
+          Loading…
+        </Caption>
+      </Card>
     );
   }
 
   if (error) {
     return (
-      <Section aria-labelledby={headingId}>
+      <Card as="section" $gap="s" aria-labelledby={headingId}>
         <Header {...header} />
-        <Status role="alert" $tone="error">
+        <Caption $tone="error" role="alert">
           Error: {error.message}
-        </Status>
-      </Section>
+        </Caption>
+      </Card>
     );
   }
 
   if (data === undefined) {
     return (
-      <Section aria-labelledby={headingId}>
+      <Card as="section" $gap="s" aria-labelledby={headingId}>
         <Header {...header} />
-        <Status role="status">No data yet.</Status>
-      </Section>
+        <Caption $tone="muted" role="status">
+          No data yet.
+        </Caption>
+      </Card>
     );
   }
 
   return (
-    <Section aria-labelledby={headingId}>
+    <Card as="section" $gap="s" aria-labelledby={headingId}>
       <Header {...header} />
-      <Status role="status">Loaded.</Status>
+      <Caption $tone="muted" role="status">
+        Loaded.
+      </Caption>
       <CodeBlock aria-label={`${procedure} response`}>
         <code>{JSON.stringify(data, null, 2)}</code>
       </CodeBlock>
-    </Section>
+    </Card>
   );
 };
