@@ -12,6 +12,12 @@ export type { TextProps, TextTone } from './components/textStyles';
  * `$tone` sets the colour.
  */
 
+/** Hero numbers, like the current temperature. */
+export const Display = styled.p<TextProps>`
+  ${textStyles({ size: 'xl', weight: 'regular', lineHeight: 'tight' })}
+  font-size: calc(${({ theme }) => theme.fontSize('xl')} * 2.5);
+`;
+
 export const H1 = styled.h1<TextProps>`
   ${textStyles({ size: 'l', weight: 'semibold', lineHeight: 'tight' })}
 `;

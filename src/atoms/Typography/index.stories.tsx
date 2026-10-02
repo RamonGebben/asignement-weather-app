@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { Caption, H1, H2, Label, Lead, P } from '.';
+import { Caption, Display, H1, H2, Label, Lead, P } from '.';
 
 const meta = {
   title: 'Atoms/Typography',
@@ -17,6 +17,7 @@ type Story = StoryObj<typeof meta>;
 export const Scale: Story = {
   render: ({ $tone }) => (
     <>
+      <Display $tone={$tone}>20°</Display>
       <H1 $tone={$tone}>H1 · Weather Explorer</H1>
       <H2 $tone={$tone}>H2 · Weather</H2>
       <Lead $tone={$tone}>Lead · Showing Utrecht, Utrecht, NL</Lead>

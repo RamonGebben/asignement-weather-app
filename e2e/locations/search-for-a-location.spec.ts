@@ -23,7 +23,7 @@ test('searches for a place and shows its weather', async ({ page }) => {
 
   await expect(page).toHaveURL(/lat=52\.3727598&lon=4\.8936041&name=Amsterdam/);
   await expect(
-    page.getByText('Showing Amsterdam, North Holland, NL'),
+    page.getByRole('main').getByText('Amsterdam, North Holland, NL'),
   ).toBeVisible();
   await expect
     .poll(() => calls)
@@ -39,7 +39,9 @@ test('keeps the chosen place after a reload', async ({ page }) => {
 
   await page.reload();
 
-  await expect(page.getByText('Showing Amsterdam, NL')).toBeVisible();
+  await expect(
+    page.getByRole('main').getByText('Amsterdam, NL', { exact: true }),
+  ).toBeVisible();
 });
 
 test('says so when nothing matches', async ({ page }) => {

@@ -14,7 +14,7 @@ test.describe('with location access', () => {
     await page.getByRole('button', { name: 'Use my location' }).click();
 
     await expect(
-      page.getByText('Showing The Hague, South Holland, NL'),
+      page.getByRole('main').getByText('The Hague, South Holland, NL'),
     ).toBeVisible();
     // The browser's own position, not the place's centre, drives the weather.
     await expect(page).toHaveURL(/lat=52\.0799&lon=4\.3113&name=The\+Hague/);
@@ -37,6 +37,8 @@ test.describe('without location access', () => {
     await expect(
       page.getByText('Location access was denied. Search for a place instead.'),
     ).toBeVisible();
-    await expect(page.getByText('Showing Utrecht, Utrecht, NL')).toBeVisible();
+    await expect(
+      page.getByRole('main').getByText('Utrecht, Utrecht, NL'),
+    ).toBeVisible();
   });
 });
