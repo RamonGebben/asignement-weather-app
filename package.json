@@ -6,20 +6,52 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --project=unit",
+    "test:e2e": "playwright test",
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test:storybook": "vitest --project=storybook --run"
   },
   "dependencies": {
+    "@pindakaasman/design-system": "^1.0.0",
     "next": "16.3.8",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@pindakaasman/eslint-config": "^0.3.0",
+    "@pindakaasman/prettier-config": "^0.1.2",
+    "@pindakaasman/tsconfig": "^0.2.1",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.20.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
-    "typescript": "^5"
+    "eslint-plugin-storybook": "^10.6.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.9",
+    "typescript": "^5",
+    "vitest": "^5.0.3",
+    "storybook": "^10.6.1",
+    "@storybook/nextjs-vite": "^10.6.1",
+    "@chromatic-com/storybook": "^5.4.0",
+    "@storybook/addon-vitest": "^10.6.1",
+    "@storybook/addon-a11y": "^10.6.1",
+    "@storybook/addon-docs": "^10.6.1",
+    "@storybook/addon-mcp": "^10.6.1",
+    "vite": "^8.3.2",
+    "@vitest/browser-playwright": "5.0.3",
+    "@vitest/coverage-v8": "5.0.3",
+    "playwright": "^1.63.0"
   },
-  "packageManager": "pnpm@11.1.1"
+  "packageManager": "pnpm@11.1.1",
+  "prettier": "@pindakaasman/prettier-config"
 }
