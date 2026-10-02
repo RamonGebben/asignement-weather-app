@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useBrowserPosition } from '~/hooks/useBrowserPosition';
 import { useTRPC } from '~/providers/TrpcProvider';
+import { formatLocationName } from '~/utils/formatLocationName';
 import { toLocationSearchParams } from '~/utils/locationSearchParams';
 import type { Location } from '~/weather/model';
 import { toPositionLocation } from './toPositionLocation';
@@ -33,10 +34,17 @@ export const useLocationSearch = () => {
     trpc.location.reverse.queryOptions(position.coordinates ?? skipToken),
   );
 
-  const selectLocation = (location: Location) =>
+  /**
+   * Show the chosen place: its name in the input, the other search results
+   * gone, and the place in the URL.
+   */
+  const selectLocation = (location: Location) => {
+    setQuery(formatLocationName(location));
+    setSubmittedQuery(undefined);
     router.push(`${pathname}?${toLocationSearchParams(location)}`, {
       scroll: false,
     });
+  };
 
   const locateMe = async () => {
     const coordinates = await position.locate();

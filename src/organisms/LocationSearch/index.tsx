@@ -1,7 +1,7 @@
 'use client';
 
 import type { FormEvent } from 'react';
-import { useId } from 'react';
+import { useId, useRef } from 'react';
 import { Button } from '~/atoms/Button';
 import { Stack } from '~/atoms/Stack';
 import { TextInput } from '~/atoms/TextInput';
@@ -37,10 +37,18 @@ export const LocationSearch = ({
   onUseMyLocation,
 }: LocationSearchProps) => {
   const inputId = useId();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit(query.trim());
+  };
+
+  // The chosen result's button disappears with the list, so hand focus back
+  // to the input - now showing the chosen place - instead of losing it.
+  const handleSelect = (location: Location) => {
+    onSelect(location);
+    inputRef.current?.focus();
   };
 
   return (
@@ -55,6 +63,7 @@ export const LocationSearch = ({
         <Label htmlFor={inputId}>Search for a place</Label>
         <Stack $direction="row" $wrap $gap="xs">
           <TextInput
+            ref={inputRef}
             id={inputId}
             type="search"
             name="query"
@@ -83,7 +92,7 @@ export const LocationSearch = ({
         results={results}
         isSearching={isSearching}
         error={searchError}
-        onSelect={onSelect}
+        onSelect={handleSelect}
       />
     </Stack>
   );

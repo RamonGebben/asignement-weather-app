@@ -18,6 +18,9 @@ test.describe('with location access', () => {
     ).toBeVisible();
     // The browser's own position, not the place's centre, drives the weather.
     await expect(page).toHaveURL(/lat=52\.0799&lon=4\.3113&name=The\+Hague/);
+    await expect(
+      page.getByRole('searchbox', { name: 'Search for a place' }),
+    ).toHaveValue('The Hague, South Holland, NL');
     expect(calls).toContainEqual({
       procedure: 'location.reverse',
       input: { lat: 52.0799, lon: 4.3113 },

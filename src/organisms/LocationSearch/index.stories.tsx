@@ -71,6 +71,9 @@ export const WithResults: Story = {
       canvas.getByRole('button', { name: 'Amsterdam, North Holland, NL' }),
     );
     await expect(args.onSelect).toHaveBeenCalledWith(sampleSearchResults[0]);
+    await expect(
+      canvas.getByRole('searchbox', { name: 'Search for a place' }),
+    ).toHaveFocus();
   },
 };
 

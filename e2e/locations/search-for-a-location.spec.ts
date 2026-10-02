@@ -22,6 +22,10 @@ test('searches for a place and shows its weather', async ({ page }) => {
     .click();
 
   await expect(page).toHaveURL(/lat=52\.3727598&lon=4\.8936041&name=Amsterdam/);
+  const searchbox = page.getByRole('searchbox', { name: 'Search for a place' });
+  await expect(searchbox).toHaveValue('Amsterdam, North Holland, NL');
+  await expect(searchbox).toBeFocused();
+  await expect(results).toBeHidden();
   await expect(
     page.getByRole('main').getByText('Amsterdam, North Holland, NL'),
   ).toBeVisible();
