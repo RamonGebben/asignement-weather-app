@@ -33,6 +33,24 @@ type Story = StoryObj<typeof meta>;
 
 export const Loaded: Story = {};
 
+/** After sunset the sky turns to its night gradient. */
+export const Night: Story = {
+  args: { fetchedAt: new Date('2026-10-02T21:00:00.000Z') },
+};
+
+export const Rain: Story = {
+  args: {
+    report: {
+      ...sampleWeatherReport,
+      current: {
+        ...sampleWeatherReport.current,
+        condition: 'rain',
+        description: 'moderate rain',
+      },
+    },
+  },
+};
+
 export const Searching: Story = {
   args: {
     search: { ...search, query: 'Amsterdam', results: sampleSearchResults },

@@ -8,8 +8,10 @@ import { ForecastStrip } from '~/organisms/ForecastStrip';
 import type { LocationSearchProps } from '~/organisms/LocationSearch';
 import { SunCard } from '~/organisms/SunCard';
 import { WindCard } from '~/organisms/WindCard';
+import { toSky } from '~/theme/skies';
 import { formatLocationName } from '~/utils/formatLocationName';
 import type { Location, WeatherReport } from '~/weather/model';
+import { getSunArcPosition } from '~/weather/sun/getSunArcPosition';
 import { Area } from './components/Area';
 import { Layout } from './components/Layout';
 import { Shell } from './components/Shell';
@@ -69,9 +71,12 @@ export const WeatherDashboard = ({
     );
   }
 
+  const { isDaytime } = getSunArcPosition(fetchedAt, report.current.sun);
+
   return (
     <Shell
       search={search}
+      sky={toSky(report.current.condition, isDaytime)}
       observed={{
         at: report.current.observedAt,
         timezoneOffset: report.timezoneOffset,
