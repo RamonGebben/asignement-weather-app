@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { colorModeScript } from '@pindakaasman/design-system';
 import { StyledComponentsRegistry } from '~/providers/StyledComponentsRegistry';
 import { ThemeProvider } from '~/providers/ThemeProvider';
+import { TrpcProvider } from '~/providers/TrpcProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,7 +28,9 @@ const RootLayout = ({ children }: LayoutProps<'/'>) => {
       </head>
       <body>
         <StyledComponentsRegistry>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <TrpcProvider>{children}</TrpcProvider>
+          </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
