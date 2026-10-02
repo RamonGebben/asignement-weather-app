@@ -1,7 +1,7 @@
 'use client';
 
 import { useId } from 'react';
-import { Card } from '~/atoms/Card';
+import { GlassPanel } from '~/atoms/GlassPanel';
 import { Stack } from '~/atoms/Stack';
 import { H2, Lead } from '~/atoms/Typography';
 import { StatList } from '~/molecules/StatList';
@@ -15,7 +15,7 @@ export const WindCard = ({ wind }: { wind: Wind }) => {
   const headingId = useId();
 
   return (
-    <Card as="section" $gap="s" aria-labelledby={headingId}>
+    <GlassPanel as="section" $gap="s" aria-labelledby={headingId}>
       <Stack $direction="row" $justify="space-between" $align="baseline">
         <H2 id={headingId}>Wind status</H2>
         <Lead>{formatWindSpeed(wind.speed)}</Lead>
@@ -36,6 +36,6 @@ export const WindCard = ({ wind }: { wind: Wind }) => {
           { label: 'Beaufort', value: `Force ${toBeaufort(wind.speed)}` },
         ]}
       />
-    </Card>
+    </GlassPanel>
   );
 };

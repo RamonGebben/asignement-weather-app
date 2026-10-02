@@ -1,7 +1,7 @@
 'use client';
 
 import { useId } from 'react';
-import { Card } from '~/atoms/Card';
+import { GlassPanel } from '~/atoms/GlassPanel';
 import { Meter } from '~/atoms/Meter';
 import { Stack } from '~/atoms/Stack';
 import { Caption, H2, Label } from '~/atoms/Typography';
@@ -31,7 +31,7 @@ export const SunCard = ({ sun, timezoneOffset, now }: SunCardProps) => {
   const { progress, isDaytime } = getSunArcPosition(now, sun);
 
   return (
-    <Card as="section" $gap="s" aria-labelledby={headingId}>
+    <GlassPanel as="section" $gap="s" aria-labelledby={headingId}>
       <H2 id={headingId}>Sunrise &amp; sunset</H2>
       <StatList
         stats={[
@@ -58,6 +58,6 @@ export const SunCard = ({ sun, timezoneOffset, now }: SunCardProps) => {
         <Meter id={meterId} min={0} max={1} value={progress} />
         <Caption $tone="muted">{describeDaylight(progress, isDaytime)}</Caption>
       </Stack>
-    </Card>
+    </GlassPanel>
   );
 };

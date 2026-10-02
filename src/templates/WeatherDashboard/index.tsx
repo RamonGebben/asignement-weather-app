@@ -1,5 +1,6 @@
 'use client';
 
+import { GlassPanel } from '~/atoms/GlassPanel';
 import { Stack } from '~/atoms/Stack';
 import { Caption } from '~/atoms/Typography';
 import { CurrentConditions } from '~/organisms/CurrentConditions';
@@ -35,9 +36,11 @@ export const WeatherDashboard = ({
   if (isLoading) {
     return (
       <Shell search={search}>
-        <Caption $tone="muted" role="status">
-          Loading the weather for {formatLocationName(location)}…
-        </Caption>
+        <GlassPanel>
+          <Caption $tone="muted" role="status">
+            Loading the weather for {formatLocationName(location)}…
+          </Caption>
+        </GlassPanel>
       </Shell>
     );
   }
@@ -45,9 +48,11 @@ export const WeatherDashboard = ({
   if (error) {
     return (
       <Shell search={search}>
-        <Caption $tone="error" role="alert">
-          Couldn’t load the weather: {error.message}
-        </Caption>
+        <GlassPanel>
+          <Caption $tone="error" role="alert">
+            Couldn’t load the weather: {error.message}
+          </Caption>
+        </GlassPanel>
       </Shell>
     );
   }
@@ -55,9 +60,11 @@ export const WeatherDashboard = ({
   if (!report || !fetchedAt) {
     return (
       <Shell search={search}>
-        <Caption $tone="muted" role="status">
-          No weather to show yet.
-        </Caption>
+        <GlassPanel>
+          <Caption $tone="muted" role="status">
+            No weather to show yet.
+          </Caption>
+        </GlassPanel>
       </Shell>
     );
   }
@@ -72,11 +79,13 @@ export const WeatherDashboard = ({
     >
       <Layout>
         <Area $area="hero">
-          <CurrentConditions
-            location={location}
-            current={report.current}
-            today={report.today}
-          />
+          <GlassPanel>
+            <CurrentConditions
+              location={location}
+              current={report.current}
+              today={report.today}
+            />
+          </GlassPanel>
         </Area>
         <Area $area="side">
           <Stack $gap="base">
@@ -89,7 +98,9 @@ export const WeatherDashboard = ({
           </Stack>
         </Area>
         <Area $area="forecast">
-          <ForecastStrip days={[report.today, ...report.forecast]} />
+          <GlassPanel>
+            <ForecastStrip days={[report.today, ...report.forecast]} />
+          </GlassPanel>
         </Area>
       </Layout>
     </Shell>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Stack } from '~/atoms/Stack';
+import { GlassPanel } from '~/atoms/GlassPanel';
 import { Caption, P } from '~/atoms/Typography';
 import type { LocationSearchProps } from '~/organisms/LocationSearch';
 import { LocationSearch } from '~/organisms/LocationSearch';
@@ -14,7 +14,7 @@ export interface TopBarProps {
 
 /** Brand, location search and the local time of the observation. */
 export const TopBar = ({ search, observed }: TopBarProps) => (
-  <Stack
+  <GlassPanel
     as="header"
     $direction="row"
     $wrap
@@ -32,5 +32,5 @@ export const TopBar = ({ search, observed }: TopBarProps) => (
         </time>
       </Caption>
     ) : null}
-  </Stack>
+  </GlassPanel>
 );
