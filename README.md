@@ -22,7 +22,12 @@ pnpm test          # Vitest, pure logic
 pnpm test:storybook # component behavior + accessibility
 pnpm test:e2e      # Playwright, full user flows
 pnpm build
+pnpm lighthouse    # Lighthouse CI, against the build above
 ```
+
+All of this (minus `pnpm dev`) runs on every PR via [GitHub Actions](.github/workflows/ci.yml),
+which builds once and shares that build between the e2e and Lighthouse jobs. Vercel handles
+its own build and deploy on push, so CI here only has to verify.
 
 ## Stack
 

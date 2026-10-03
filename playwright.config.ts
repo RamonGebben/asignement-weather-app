@@ -1,12 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const port = 3100;
+const isCI = !!process.env.CI;
 
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  forbidOnly: isCI,
+  retries: isCI ? 2 : 0,
   reporter: 'list',
   use: {
     baseURL: `http://localhost:${port}`,
@@ -14,8 +15,14 @@ export default defineConfig({
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
-    command: `pnpm dev --port ${port}`,
+    // CI builds once and shares `.next/standalone` as an artifact (see
+    // .github/workflows/ci.yml), so e2e runs the prebuilt server instead of
+    // rebuilding via `next dev`.
+    command: isCI
+      ? 'node .next/standalone/server.js'
+      : `pnpm dev --port ${port}`,
+    env: isCI ? { PORT: String(port) } : undefined,
     url: `http://localhost:${port}`,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !isCI,
   },
 });
