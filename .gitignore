@@ -50,5 +50,8 @@ storybook-static
 /blob-report/
 /playwright/.cache/
 
+# lighthouse ci
+/.lighthouseci/
+
 # local working notes for resuming sessions
 /WORKLOG.md

@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run --project=unit",
     "test:e2e": "playwright test",
+    "lighthouse": "lhci autorun",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.4.0",
+    "@lhci/cli": "^0.15.1",
     "@pindakaasman/eslint-config": "^0.3.0",
     "@pindakaasman/prettier-config": "^0.1.2",
     "@pindakaasman/tsconfig": "^0.2.1",
