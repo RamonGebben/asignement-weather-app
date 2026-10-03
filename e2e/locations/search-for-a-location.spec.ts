@@ -10,15 +10,15 @@ test('searches for a place and shows its weather', async ({ page }) => {
     .fill('Amsterdam');
   await page.getByRole('button', { name: 'Search' }).click();
 
-  const results = page.getByRole('list', { name: 'Search results' });
-  await expect(results.getByRole('button')).toHaveCount(4);
+  const results = page.getByRole('listbox', { name: 'Search results' });
+  await expect(results.getByRole('option')).toHaveCount(4);
   expect(calls).toContainEqual({
     procedure: 'location.search',
     input: { query: 'Amsterdam' },
   });
 
   await results
-    .getByRole('button', { name: 'Amsterdam, North Holland, NL' })
+    .getByRole('option', { name: 'Amsterdam, North Holland, NL' })
     .click();
 
   await expect(page).toHaveURL(/lat=52\.3727598&lon=4\.8936041&name=Amsterdam/);
@@ -46,6 +46,9 @@ test('keeps the chosen place after a reload', async ({ page }) => {
   await expect(
     page.getByRole('main').getByText('Amsterdam, NL', { exact: true }),
   ).toBeVisible();
+  await expect(
+    page.getByRole('searchbox', { name: 'Search for a place' }),
+  ).toHaveValue('Amsterdam, NL');
 });
 
 test('says so when nothing matches', async ({ page }) => {

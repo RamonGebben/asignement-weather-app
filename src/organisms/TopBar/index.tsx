@@ -1,6 +1,7 @@
 'use client';
 
 import { GlassPanel } from '~/atoms/GlassPanel';
+import { Stack } from '~/atoms/Stack';
 import { P } from '~/atoms/Typography';
 import { ColorModeToggle } from '~/molecules/ColorModeToggle';
 import type { LocationSearchProps } from '~/organisms/LocationSearch';
@@ -20,12 +21,14 @@ export const TopBar = ({ search, observed }: TopBarProps) => (
     $direction="row"
     $wrap
     $justify="space-between"
-    $align="flex-start"
+    $align="center"
     $gap="m"
   >
     <P>Weather</P>
     <LocationSearch {...search} />
-    <ObservedTime observed={observed} />
-    <ColorModeToggle />
+    <Stack $direction="row" $align="center" $gap="s">
+      <ObservedTime observed={observed} />
+      <ColorModeToggle />
+    </Stack>
   </GlassPanel>
 );

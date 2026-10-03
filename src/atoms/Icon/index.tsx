@@ -8,6 +8,8 @@ import type {
 import styled from 'styled-components';
 import { icons, type IconName } from './icons';
 
+export type { IconName } from './icons';
+
 export interface IconProps {
   /** Which icon to render - see `icons` for the available names. */
   name: IconName;
