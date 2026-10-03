@@ -1,7 +1,7 @@
 /**
  * The glass panels' recipe: the theme background as a translucent tint,
  * frosted with a blur, plus a faint film of noise. The numbers are tied to
- * contrast. `glass.test.ts` proves that every text tone stays at WCAG AA
+ * contrast. `index.test.ts` proves that every text tone stays at WCAG AA
  * (4.5:1) on the tint, in both colour modes, even with pure black or pure
  * white behind it and the noise at its darkest or lightest. Change them
  * together.

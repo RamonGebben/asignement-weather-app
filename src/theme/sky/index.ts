@@ -5,7 +5,7 @@ import type { WeatherCondition } from '~/weather/model';
  * the feel of the weather outside. These depict the sky, not UI, so they
  * don't change with the colour mode. Text never sits on them directly: it
  * sits on the glass panels, which hold contrast over any background (see
- * `glass.ts`).
+ * `theme/glass`).
  */
 export const skies: Record<WeatherCondition, { day: string; night: string }> = {
   clear: {

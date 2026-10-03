@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { skies, toSky } from './skies';
+import { skies, toSky } from '.';
 
 const noGlow = { strength: 0, phase: 'sunrise' } as const;
 

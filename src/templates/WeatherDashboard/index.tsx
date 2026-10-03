@@ -8,7 +8,7 @@ import { ForecastStrip } from '~/organisms/ForecastStrip';
 import type { LocationSearchProps } from '~/organisms/LocationSearch';
 import { SunCard } from '~/organisms/SunCard';
 import { WindCard } from '~/organisms/WindCard';
-import { toSky } from '~/theme/skies';
+import { toSky } from '~/theme/sky';
 import { formatLocationName } from '~/utils/formatLocationName';
 import type { Location, WeatherReport } from '~/weather/model';
 import { getGoldenHour } from '~/weather/sun/getGoldenHour';

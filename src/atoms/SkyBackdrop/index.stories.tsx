@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import type { ComponentProps } from 'react';
-import { skies } from '~/theme/skies';
+import { skies } from '~/theme/sky';
 import type { WeatherCondition } from '~/weather/model';
 import { SkyBackdrop } from '.';
 

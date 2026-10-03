@@ -6,8 +6,8 @@ import {
   parseHex,
   type Rgb,
 } from '~/utils/contrast';
-import theme from '.';
-import { glass } from './glass';
+import theme from '..';
+import { glass } from '.';
 
 const black: Rgb = [0, 0, 0];
 const white: Rgb = [255, 255, 255];

@@ -5,7 +5,7 @@ import { GlassPanel } from '.';
 
 /**
  * What the panel floats over in each story. The contrast guarantee is proven
- * in `theme/glass.test.ts`; these show what it looks like over the extremes
+ * in `theme/glass/index.test.ts`; these show what it looks like over the extremes
  * and over real skies.
  */
 const backdrops = {
