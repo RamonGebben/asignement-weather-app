@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Icon } from '~/atoms/Icon';
+import { Button } from '~/molecules/Button';
 import { ToggleButton } from '.';
 
 const meta = {
@@ -7,8 +8,18 @@ const meta = {
   component: ToggleButton,
   render: () => (
     <ToggleButton>
-      <Icon name="sun" />
-      <Icon name="moon" />
+      <Button
+        $variant="secondary"
+        $iconOnly
+        iconSlot={
+          <>
+            <Icon name="sun" />
+            <Icon name="moon" />
+          </>
+        }
+      >
+        Toggle color mode
+      </Button>
     </ToggleButton>
   ),
 } satisfies Meta<typeof ToggleButton>;
