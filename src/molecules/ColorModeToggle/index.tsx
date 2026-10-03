@@ -2,7 +2,7 @@
 
 import { getColorMode, setColorMode } from '@pindakaasman/design-system';
 import { Icon } from '~/atoms/Icon';
-import { VisuallyHidden } from '~/atoms/VisuallyHidden';
+import { Button } from '~/molecules/Button';
 import { ToggleButton } from './components/ToggleButton';
 
 /**
@@ -23,9 +23,19 @@ const toggleColorMode = () => {
 };
 
 export const ColorModeToggle = () => (
-  <ToggleButton onClick={toggleColorMode}>
-    <Icon name="sun" />
-    <Icon name="moon" />
-    <VisuallyHidden>Toggle color mode</VisuallyHidden>
+  <ToggleButton>
+    <Button
+      $variant="secondary"
+      $iconOnly
+      iconSlot={
+        <>
+          <Icon name="sun" />
+          <Icon name="moon" />
+        </>
+      }
+      onClick={toggleColorMode}
+    >
+      Toggle color mode
+    </Button>
   </ToggleButton>
 );
