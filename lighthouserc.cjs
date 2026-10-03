@@ -19,6 +19,15 @@ module.exports = {
     },
     assert: {
       preset: 'lighthouse:no-pwa',
+      // The preset only gates individual audits - add the overall category
+      // scores so a regression that doesn't trip any single audit still
+      // fails the build.
+      assertions: {
+        'categories:performance': ['error', { minScore: 0.8 }],
+        'categories:accessibility': ['error', { minScore: 0.9 }],
+        'categories:best-practices': ['error', { minScore: 0.9 }],
+        'categories:seo': ['error', { minScore: 0.9 }],
+      },
     },
     upload: {
       target: 'filesystem',
