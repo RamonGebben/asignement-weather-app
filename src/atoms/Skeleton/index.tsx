@@ -21,7 +21,7 @@ const shimmer = keyframes`
 export const Skeleton = styled.div<SkeletonProps>`
   width: ${({ $width = '100%' }) => $width};
   height: ${({ $height = '1em' }) => $height};
-  border-radius: ${({ theme }) => theme.getTokens().border?.radius.s};
+  border-radius: ${({ theme }) => theme.borderRadius('s')};
   background: linear-gradient(
     90deg,
     color-mix(in srgb, currentcolor 12%, transparent) 25%,

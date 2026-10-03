@@ -3,6 +3,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  ${({ theme }) => `
+    ${theme.colorModeCss()}
+    ${theme.breakpointCss()}
+  `}
+
+
   html {
     height: 100%;
   }
@@ -19,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     color: ${({ theme }) => theme.color('background', 'text')};
     background: ${({ theme }) => theme.color('background')};
-    font-family: ${({ theme }) => theme.getTokens().type.fontFamily.sans};
+    font-family: ${({ theme }) => theme.fontFamily('base')};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

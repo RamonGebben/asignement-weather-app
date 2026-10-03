@@ -9,6 +9,6 @@ export const Pill = styled(Caption)`
   align-items: center;
   padding: ${({ theme }) => theme.spacing('xxs')}
     ${({ theme }) => theme.spacing('s')};
-  border: ${({ theme }) => theme.getTokens().border?.width.s} solid currentColor;
-  border-radius: ${({ theme }) => theme.getTokens().border?.radius.full};
+  border: ${({ theme }) => theme.borderWidth('s')} solid currentColor;
+  border-radius: ${({ theme }) => theme.borderRadius('full')};
 `;

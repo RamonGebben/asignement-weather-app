@@ -13,9 +13,9 @@ export const TextInput = styled.input`
   font-size: ${({ theme }) => theme.fontSize('s')};
   color: ${({ theme }) => theme.color('formBackground', 'text')};
   background: ${({ theme }) => theme.color('formBackground')};
-  border: ${({ theme }) => theme.getTokens().border?.width.s} solid
+  border: ${({ theme }) => theme.borderWidth('s')} solid
     ${({ theme }) => theme.color('secondary', 'text')};
-  border-radius: ${({ theme }) => theme.getTokens().border?.radius.base};
+  border-radius: ${({ theme }) => theme.borderRadius('base')};
 
   ${focusRing}
 `;

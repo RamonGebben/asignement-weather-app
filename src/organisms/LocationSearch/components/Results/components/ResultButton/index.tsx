@@ -12,9 +12,9 @@ export const ResultButton = styled.button.attrs({ type: 'button' })`
   text-align: left;
   color: inherit;
   background: transparent;
-  border: ${({ theme }) => theme.getTokens().border?.width.s} solid
+  border: ${({ theme }) => theme.borderWidth('s')} solid
     ${({ theme }) => theme.color('secondary')};
-  border-radius: ${({ theme }) => theme.getTokens().border?.radius.base};
+  border-radius: ${({ theme }) => theme.borderRadius('base')};
   cursor: pointer;
 
   @media (hover: hover) and (pointer: fine) {

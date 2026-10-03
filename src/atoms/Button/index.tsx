@@ -16,8 +16,8 @@ export const Button = styled.button.attrs(({ type = 'button' }) => ({ type }))<{
   width: fit-content;
   height: 40px;
   padding: 0 ${({ theme }) => theme.spacing('base')};
-  border-radius: ${({ theme }) => theme.getTokens().border?.radius.full};
-  border: ${({ theme }) => theme.getTokens().border?.width.s} solid transparent;
+  border-radius: ${({ theme }) => theme.borderRadius('full')};
+  border: ${({ theme }) => theme.borderWidth('s')} solid transparent;
   font-size: ${({ theme }) => theme.fontSize('xs')};
   font-weight: ${({ theme }) => theme.fontWeight('medium')};
   font-family: inherit;

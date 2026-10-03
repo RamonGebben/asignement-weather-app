@@ -10,8 +10,8 @@ const tokens = {
   type: {
     baseFontSize: '16px',
     fontFamily: {
-      base: 'Arial, Helvetica, sans-serif',
-      sans: 'var(--font-geist-sans)',
+      base: 'var(--font-geist-sans)',
+      heading: 'var(--font-geist-sans)',
       mono: 'var(--font-geist-mono)',
     },
     fontWeight: {

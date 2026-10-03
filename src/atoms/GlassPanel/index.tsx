@@ -33,7 +33,7 @@ export const GlassPanel = styled(Stack)`
   isolation: isolate;
   min-width: 0;
   padding: ${({ theme }) => theme.spacing('m')};
-  border: ${({ theme }) => theme.getTokens().border?.width.s} solid
+  border: ${({ theme }) => theme.borderWidth('s')} solid
     color-mix(
       in srgb,
       ${({ theme }) => theme.color('background', 'text')} 14%,

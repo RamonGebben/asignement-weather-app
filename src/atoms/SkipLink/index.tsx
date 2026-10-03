@@ -8,12 +8,12 @@ export const SkipLink = styled.a`
   position: absolute;
   top: ${({ theme }) => theme.spacing('xs')};
   left: ${({ theme }) => theme.spacing('xs')};
-  z-index: ${({ theme }) => theme.getTokens().zIndex.toast};
+  z-index: ${({ theme }) => theme.zIndex('toast')};
   padding: ${({ theme }) => theme.spacing('xs')}
     ${({ theme }) => theme.spacing('base')};
   color: ${({ theme }) => theme.color('primary', 'text')};
   background: ${({ theme }) => theme.color('primary')};
-  border-radius: ${({ theme }) => theme.getTokens().border?.radius.base};
+  border-radius: ${({ theme }) => theme.borderRadius('base')};
   transform: translateY(-200%);
 
   &:focus-visible {
