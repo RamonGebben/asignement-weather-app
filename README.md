@@ -2,7 +2,7 @@
 
 A technical assignment: a small weather dashboard for Sopra Steria.
 
-**Live demo:** _coming soon_
+**Live demo:** [https://asignement-weather-app.vercel.app/](https://asignement-weather-app.vercel.app/)
 
 ## Quick start
 
