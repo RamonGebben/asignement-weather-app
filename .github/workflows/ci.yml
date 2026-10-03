@@ -46,6 +46,7 @@ jobs:
 
   build:
     name: Build (shared by e2e + Lighthouse)
+    needs: checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -71,6 +72,11 @@ jobs:
         with:
           name: standalone-build
           path: .next/standalone
+          # standalone's own build output lives in the dot-directory
+          # `.next/standalone/.next` - upload-artifact drops dotfiles unless
+          # told otherwise, which silently produced a server.js with no
+          # build to serve.
+          include-hidden-files: true
           retention-days: 1
 
   e2e:
