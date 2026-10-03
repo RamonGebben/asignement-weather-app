@@ -5,10 +5,24 @@ import { ThemeProvider } from '~/providers/ThemeProvider';
 import { TrpcProvider } from '~/providers/TrpcProvider';
 import { fontVariables } from '~/theme/fonts';
 
+const title = 'Weather';
+const description = 'Current conditions and a five-day forecast.';
+
 export const metadata: Metadata = {
-  title: 'Weather',
-  description:
-    'Current conditions and a five-day forecast, rendered as a procedural 3D world.',
+  metadataBase: new URL('https://asignement-weather-app.vercel.app'),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    siteName: title,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+  },
 };
 
 const RootLayout = ({ children }: LayoutProps<'/'>) => {
