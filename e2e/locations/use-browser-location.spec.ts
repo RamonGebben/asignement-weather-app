@@ -37,8 +37,13 @@ test.describe('without location access', () => {
 
     await page.getByRole('button', { name: 'Use my location' }).click();
 
+    // Matches twice: an always-mounted hidden announcer (for screen
+    // readers) and the floating visible copy, portaled to the end of
+    // <body> and so last in document order.
     await expect(
-      page.getByText('Location access was denied. Search for a place instead.'),
+      page
+        .getByText('Location access was denied. Search for a place instead.')
+        .last(),
     ).toBeVisible();
     await expect(
       page.getByRole('main').getByText('Utrecht, Utrecht, NL'),

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect, fn } from 'storybook/test';
+import { expect, fn, screen } from 'storybook/test';
 import { sampleSearchResults } from '~/weather/samples';
 import { LocationSearch } from '.';
 
@@ -67,13 +67,38 @@ export const Searching: Story = {
 export const WithResults: Story = {
   args: { query: 'Amsterdam', results: sampleSearchResults },
   play: async ({ args, canvas, userEvent }) => {
+    // The results float in a portal at the end of <body>, outside the
+    // story's own canvas, so they're queried from the document instead.
     await userEvent.click(
-      canvas.getByRole('button', { name: 'Amsterdam, North Holland, NL' }),
+      screen.getByRole('option', { name: 'Amsterdam, North Holland, NL' }),
     );
     await expect(args.onSelect).toHaveBeenCalledWith(sampleSearchResults[0]);
     await expect(
       canvas.getByRole('searchbox', { name: 'Search for a place' }),
     ).toHaveFocus();
+  },
+};
+
+export const NavigatesResultsWithArrowKeys: Story = {
+  args: { query: 'Amsterdam', results: sampleSearchResults },
+  play: async ({ args, canvas, userEvent }) => {
+    const input = canvas.getByRole('searchbox', { name: 'Search for a place' });
+    input.focus();
+
+    await userEvent.keyboard('{ArrowDown}');
+    await expect(input).toHaveAttribute(
+      'aria-activedescendant',
+      expect.stringContaining('option-0'),
+    );
+
+    await userEvent.keyboard('{ArrowDown}');
+    await expect(input).toHaveAttribute(
+      'aria-activedescendant',
+      expect.stringContaining('option-1'),
+    );
+
+    await userEvent.keyboard('{Enter}');
+    await expect(args.onSelect).toHaveBeenCalledWith(sampleSearchResults[1]);
   },
 };
 

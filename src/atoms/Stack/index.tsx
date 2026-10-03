@@ -26,6 +26,11 @@ export const Stack = styled.div<StackProps>`
   gap: ${({ $gap = 'base', theme }) => theme.spacing($gap)};
   align-items: ${({ $align = 'stretch' }) => $align};
   justify-content: ${({ $justify = 'flex-start' }) => $justify};
+  /* A flex item's default min-width is its content's min-content size, not
+   * 0 without this, a Stack nested a couple of levels deep inside another
+   * flex row refuses to shrink past that, no matter how shrinkable its own
+   * children are (e.g. a TextInput with its own min-width: 0). */
+  min-width: 0;
   /* Harmless on other elements; lists rendered as a Stack lose bullets. */
   list-style: none;
 `;

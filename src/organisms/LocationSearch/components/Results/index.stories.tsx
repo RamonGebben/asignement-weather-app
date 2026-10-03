@@ -6,7 +6,13 @@ import { Results } from '.';
 const meta = {
   title: 'Organisms/LocationSearch/Results',
   component: Results,
-  args: { results: sampleSearchResults, isSearching: false, onSelect: fn() },
+  args: {
+    listboxId: 'results',
+    results: sampleSearchResults,
+    isSearching: false,
+    activeIndex: null,
+    onSelect: fn(),
+  },
 } satisfies Meta<typeof Results>;
 
 export default meta;
@@ -14,6 +20,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const ActiveOption: Story = {
+  args: { activeIndex: 0 },
+};
 
 export const Searching: Story = {
   args: { results: undefined, isSearching: true },
