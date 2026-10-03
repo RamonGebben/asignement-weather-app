@@ -22,11 +22,12 @@ export const Shell = ({
   ...topBar
 }: TopBarProps & {
   children: ReactNode;
-  /** A CSS background behind the page, once there's weather to show. */
-  sky?: string;
+  /** A CSS background behind the page. There's always one to show - the
+   * neutral default before there's weather, the real one after. */
+  sky: string;
 }) => (
   <Container $gap="l">
-    {sky ? <SkyBackdrop $sky={sky} /> : null}
+    <SkyBackdrop $sky={sky} />
     <SkipLink href={`#${mainId}`}>Skip to the weather</SkipLink>
     <TopBar {...topBar} />
     <Stack as="main" id={mainId} tabIndex={-1} $gap="l">

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { fn } from 'storybook/test';
+import { neutralSky } from '~/theme/sky';
 import { Shell } from '.';
 
 const meta = {
@@ -17,6 +18,7 @@ const meta = {
       onUseMyLocation: fn(),
     },
     children: 'Page content',
+    sky: neutralSky.day,
   },
 } satisfies Meta<typeof Shell>;
 

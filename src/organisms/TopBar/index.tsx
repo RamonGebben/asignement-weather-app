@@ -1,10 +1,10 @@
 'use client';
 
 import { GlassPanel } from '~/atoms/GlassPanel';
-import { Caption, P } from '~/atoms/Typography';
+import { P } from '~/atoms/Typography';
 import type { LocationSearchProps } from '~/organisms/LocationSearch';
 import { LocationSearch } from '~/organisms/LocationSearch';
-import { formatLocalDate, formatLocalTime } from '~/utils/formatLocalTime';
+import { ObservedTime } from './components/ObservedTime';
 
 export interface TopBarProps {
   search: LocationSearchProps;
@@ -24,13 +24,6 @@ export const TopBar = ({ search, observed }: TopBarProps) => (
   >
     <P>Weather</P>
     <LocationSearch {...search} />
-    {observed ? (
-      <Caption>
-        <time dateTime={observed.at}>
-          {formatLocalDate(observed.at, observed.timezoneOffset)} ·{' '}
-          {formatLocalTime(observed.at, observed.timezoneOffset)}
-        </time>
-      </Caption>
-    ) : null}
+    <ObservedTime observed={observed} />
   </GlassPanel>
 );

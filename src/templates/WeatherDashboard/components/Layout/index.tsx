@@ -1,8 +1,8 @@
 'use client';
 
 import styled from 'styled-components';
+import { fadeIn } from '~/theme/fadeIn';
 
-/** Hero and side column above the forecast; one column on narrow screens. */
 export const Layout = styled.div`
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
@@ -10,6 +10,7 @@ export const Layout = styled.div`
     'hero side'
     'forecast forecast';
   gap: ${({ theme }) => theme.spacing('l')};
+  ${fadeIn}
 
   ${({ theme }) => theme.mq.lessThan('tabletLandscape')`
     grid-template-columns: minmax(0, 1fr);

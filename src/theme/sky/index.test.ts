@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { skies, toSky } from '.';
+import { getNeutralSky, isNaiveDaytime, neutralSky, skies, toSky } from '.';
 
 const noGlow = { strength: 0, phase: 'sunrise' } as const;
 
@@ -41,6 +41,24 @@ describe('toSky', () => {
       opacityOf(toSky({ condition: 'storm', isDaytime: true, goldenHour })),
     ).toBeLessThan(
       opacityOf(toSky({ condition: 'clear', isDaytime: true, goldenHour })),
+    );
+  });
+});
+
+describe('isNaiveDaytime', () => {
+  it('treats 6am up to (not including) 8pm local time as daytime', () => {
+    expect(isNaiveDaytime(new Date('2026-06-15T06:00:00'))).toBe(true);
+    expect(isNaiveDaytime(new Date('2026-06-15T19:59:00'))).toBe(true);
+    expect(isNaiveDaytime(new Date('2026-06-15T20:00:00'))).toBe(false);
+    expect(isNaiveDaytime(new Date('2026-06-15T05:59:00'))).toBe(false);
+  });
+});
+
+describe('getNeutralSky', () => {
+  it('picks the neutral day or night sky from the naive guess', () => {
+    expect(getNeutralSky(new Date('2026-06-15T12:00:00'))).toBe(neutralSky.day);
+    expect(getNeutralSky(new Date('2026-06-15T23:00:00'))).toBe(
+      neutralSky.night,
     );
   });
 });

@@ -1,11 +1,10 @@
 import type { WeatherCondition } from '~/weather/model';
 
 /**
- * A background per weather condition, by day and by night, to give the page
- * the feel of the weather outside. These depict the sky, not UI, so they
- * don't change with the colour mode. Text never sits on them directly: it
- * sits on the glass panels, which hold contrast over any background (see
- * `theme/glass`).
+ * A background per weather condition, day and night, so the page feels like
+ * the weather outside. These are the sky, not UI, so they ignore colour
+ * mode - text lives on the glass panels instead, which guarantee contrast
+ * over whatever's behind them (see `theme/glass`).
  */
 export const skies: Record<WeatherCondition, { day: string; night: string }> = {
   clear: {
@@ -75,10 +74,8 @@ export interface SkyMoment {
 }
 
 /**
- * The background for a condition at this time of day. Around sunrise and
- * sunset, a warm glow rises from the horizon over the condition's gradient,
- * as strong as the weather lets through. It's a naive tint, not a model of
- * the sky.
+ * The sky for a condition at this time of day, with a warm glow near
+ * sunrise and sunset layered on top. A naive tint, not a model of the sky.
  */
 export const toSky = ({ condition, isDaytime, goldenHour }: SkyMoment) => {
   const base = isDaytime ? skies[condition].day : skies[condition].night;
@@ -90,3 +87,27 @@ export const toSky = ({ condition, isDaytime, goldenHour }: SkyMoment) => {
   const glow = `linear-gradient(to top, rgb(${colour} / ${opacity.toFixed(2)}), rgb(${colour} / 0) 70%)`;
   return `${glow}, ${base}`;
 };
+
+/**
+ * The sky before there's a report to pick a real one from - muted, and not
+ * borrowed from any real condition, since we don't know the weather yet.
+ */
+export const neutralSky = {
+  day: 'linear-gradient(to bottom, #6c7d8f, #c4ccd4)',
+  night: 'linear-gradient(to bottom, #171a24, #363d4a)',
+};
+
+const naiveDayHours = { start: 6, end: 20 };
+
+/**
+ * A rough day/night guess from the visitor's own clock, since the real
+ * sunrise and sunset only arrive with the report.
+ */
+export const isNaiveDaytime = (now: Date) => {
+  const hour = now.getHours() + now.getMinutes() / 60;
+  return hour >= naiveDayHours.start && hour < naiveDayHours.end;
+};
+
+/** The neutral sky matching that guess. */
+export const getNeutralSky = (now: Date) =>
+  isNaiveDaytime(now) ? neutralSky.day : neutralSky.night;
