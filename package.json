@@ -9,7 +9,7 @@
     "format": "prettier --check .",
     "format:write": "prettier --write .",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run --project=unit",
     "test:e2e": "playwright test",
     "lighthouse": "lhci autorun",
