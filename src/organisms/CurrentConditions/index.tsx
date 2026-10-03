@@ -4,6 +4,7 @@ import { Pill } from '~/atoms/Pill';
 import { Stack } from '~/atoms/Stack';
 import { Display, H1, Lead, P } from '~/atoms/Typography';
 import { VisuallyHidden } from '~/atoms/VisuallyHidden';
+import { ConditionIcon } from '~/molecules/ConditionIcon';
 import { formatLocationName } from '~/utils/formatLocationName';
 import { formatTemperature } from '~/utils/formatWeather';
 import { summarizeWeather } from '~/utils/summarizeWeather';
@@ -24,7 +25,10 @@ export const CurrentConditions = ({
 }: CurrentConditionsProps) => (
   <Stack $gap="m">
     <Stack $gap="xs">
-      <H1>{toConditionLabel(current.condition)}</H1>
+      <Stack $direction="row" $align="center" $gap="xs">
+        <ConditionIcon condition={current.condition} size="xl" />
+        <H1>{toConditionLabel(current.condition)}</H1>
+      </Stack>
       <Lead>{current.description}</Lead>
       <P $tone="muted">{summarizeWeather(current, today)}</P>
     </Stack>

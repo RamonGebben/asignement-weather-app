@@ -5,6 +5,7 @@ import { Grid } from '~/atoms/Grid';
 import { Stack } from '~/atoms/Stack';
 import { Caption, Lead, P } from '~/atoms/Typography';
 import { VisuallyHidden } from '~/atoms/VisuallyHidden';
+import { ConditionIcon } from '~/molecules/ConditionIcon';
 import { formatWeekday } from '~/utils/formatLocalTime';
 import { formatTemperature } from '~/utils/formatWeather';
 import { toConditionLabel } from '~/weather/condition/toConditionLabel';
@@ -32,6 +33,7 @@ export const ForecastStrip = ({ days }: ForecastStripProps) => {
                 {index === 0 ? 'Today' : formatWeekday(date)}
               </time>
             </Caption>
+            <ConditionIcon condition={condition} size="l" />
             <Lead>
               <VisuallyHidden>High </VisuallyHidden>
               {formatTemperature(temperature.max)}
