@@ -83,6 +83,8 @@ jobs:
     name: Playwright e2e
     needs: build
     runs-on: ubuntu-latest
+    env:
+      OPENWEATHERMAP_API_KEY: ${{ secrets.OPENWEATHERMAP_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -118,6 +120,8 @@ jobs:
     name: Lighthouse CI
     needs: build
     runs-on: ubuntu-latest
+    env:
+      OPENWEATHERMAP_API_KEY: ${{ secrets.OPENWEATHERMAP_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -140,4 +144,8 @@ jobs:
         with:
           name: lighthouse-report
           path: .lighthouseci
+          # same dotfile-dropping behavior as the standalone-build upload
+          # above - without this, lhci's own reports never make it into
+          # the artifact even though they're written to disk.
+          include-hidden-files: true
           retention-days: 7
