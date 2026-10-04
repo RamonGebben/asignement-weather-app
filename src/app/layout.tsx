@@ -9,7 +9,7 @@ const title = 'Weather';
 const description = 'Current conditions and a five-day forecast.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://asignement-weather-app.vercel.app'),
+  metadataBase: new URL('https://sopra-steria-weather-app.vercel.app/'),
   title,
   description,
   openGraph: {
