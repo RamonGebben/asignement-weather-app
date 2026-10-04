@@ -12,7 +12,7 @@ cp .env.example .env.local   # add your own OPENWEATHERMAP_API_KEY (free tier)
 pnpm dev                     # http://localhost:3000
 ```
 
-Verification, if you want to check it yourself instead of taking my word for it:
+## Scripts
 
 ```bash
 pnpm typecheck
